@@ -1,0 +1,188 @@
+---
+title: "Sorting Algorithms"
+description: "Implement and compare bubble sort, merge sort, and quicksort. Understand why O(n log n) is the gold standard."
+order: 1
+moduleSlug: "module-05-algorithms"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    import time
+
+    def bubble_sort(arr):
+        n = len(arr)
+        for i in range(n):
+            for j in range(0, n - i - 1):
+                if arr[j] > arr[j + 1]:
+                    arr[j], arr[j + 1] = arr[j + 1], arr[j]
+        return arr
+
+    def merge_sort(arr):
+        if len(arr) <= 1:
+            return arr
+        mid = len(arr) // 2
+        left = merge_sort(arr[:mid])
+        right = merge_sort(arr[mid:])
+        return merge(left, right)
+
+    def merge(left, right):
+        result = []
+        i = j = 0
+        while i < len(left) and j < len(right):
+            if left[i] <= right[j]:
+                result.append(left[i]); i += 1
+            else:
+                result.append(right[j]); j += 1
+        result.extend(left[i:])
+        result.extend(right[j:])
+        return result
+
+    # Test with a small array
+    data = [64, 34, 25, 12, 22, 11, 90]
+    print("Original:", data)
+    print("Bubble Sort:", bubble_sort(data.copy()))
+    print("Merge Sort:", merge_sort(data.copy()))
+  javascript: |
+    function bubbleSort(arr) {
+        const n = arr.length;
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                }
+            }
+        }
+        return arr;
+    }
+
+    function mergeSort(arr) {
+        if (arr.length <= 1) return arr;
+        const mid = Math.floor(arr.length / 2);
+        const left = mergeSort(arr.slice(0, mid));
+        const right = mergeSort(arr.slice(mid));
+        return merge(left, right);
+    }
+
+    function merge(left, right) {
+        const result = [];
+        let i = 0, j = 0;
+        while (i < left.length && j < right.length) {
+            if (left[i] <= right[j]) result.push(left[i++]);
+            else result.push(right[j++]);
+        }
+        return result.concat(left.slice(i), right.slice(j));
+    }
+
+    const data = [64, 34, 25, 12, 22, 11, 90];
+    console.log("Original:", data);
+    console.log("Bubble Sort:", bubbleSort([...data]));
+    console.log("Merge Sort:", mergeSort([...data]));
+  cpp: |
+    #include <iostream>
+    #include <vector>
+    using namespace std;
+
+    void bubbleSort(vector<int>& arr) {
+        int n = arr.size();
+        for (int i = 0; i < n; i++)
+            for (int j = 0; j < n - i - 1; j++)
+                if (arr[j] > arr[j+1])
+                    swap(arr[j], arr[j+1]);
+    }
+
+    vector<int> mergeSort(vector<int> arr) {
+        if (arr.size() <= 1) return arr;
+        int mid = arr.size() / 2;
+        vector<int> left(arr.begin(), arr.begin() + mid);
+        vector<int> right(arr.begin() + mid, arr.end());
+        left = mergeSort(left);
+        right = mergeSort(right);
+        vector<int> result;
+        int i = 0, j = 0;
+        while (i < left.size() && j < right.size()) {
+            if (left[i] <= right[j]) result.push_back(left[i++]);
+            else result.push_back(right[j++]);
+        }
+        while (i < left.size()) result.push_back(left[i++]);
+        while (j < right.size()) result.push_back(right[j++]);
+        return result;
+    }
+
+    void printArr(const vector<int>& arr) {
+        for (int x : arr) cout << x << " ";
+        cout << endl;
+    }
+
+    int main() {
+        vector<int> data = {64, 34, 25, 12, 22, 11, 90};
+        cout << "Original: "; printArr(data);
+        vector<int> b = data; bubbleSort(b);
+        cout << "Bubble Sort: "; printArr(b);
+        cout << "Merge Sort: "; printArr(mergeSort(data));
+        return 0;
+    }
+  java: |
+    import java.util.Arrays;
+
+    public class Main {
+        static void bubbleSort(int[] arr) {
+            int n = arr.length;
+            for (int i = 0; i < n; i++)
+                for (int j = 0; j < n - i - 1; j++)
+                    if (arr[j] > arr[j+1]) {
+                        int temp = arr[j];
+                        arr[j] = arr[j+1];
+                        arr[j+1] = temp;
+                    }
+        }
+
+        static int[] mergeSort(int[] arr) {
+            if (arr.length <= 1) return arr;
+            int mid = arr.length / 2;
+            int[] left = mergeSort(Arrays.copyOfRange(arr, 0, mid));
+            int[] right = mergeSort(Arrays.copyOfRange(arr, mid, arr.length));
+            int[] result = new int[arr.length];
+            int i = 0, j = 0, k = 0;
+            while (i < left.length && j < right.length)
+                result[k++] = left[i] <= right[j] ? left[i++] : right[j++];
+            while (i < left.length) result[k++] = left[i++];
+            while (j < right.length) result[k++] = right[j++];
+            return result;
+        }
+
+        public static void main(String[] args) {
+            int[] data = {64, 34, 25, 12, 22, 11, 90};
+            System.out.println("Original: " + Arrays.toString(data));
+            int[] b = data.clone(); bubbleSort(b);
+            System.out.println("Bubble Sort: " + Arrays.toString(b));
+            System.out.println("Merge Sort: " + Arrays.toString(mergeSort(data)));
+        }
+    }
+---
+
+# Sorting Algorithms
+
+Sorting is one of the most studied problems in computer science. Understanding sorting algorithms teaches you fundamental concepts like divide-and-conquer, time complexity, and algorithm tradeoffs.
+
+## Bubble Sort — O(n^2)
+
+The simplest sorting algorithm: repeatedly walk through the list, compare adjacent elements, and swap them if they're in the wrong order. Like bubbles rising to the surface.
+
+**Pros**: Simple to understand and implement
+**Cons**: Extremely slow for large datasets
+
+## Merge Sort — O(n log n)
+
+Divide the array in half, recursively sort each half, then merge the sorted halves back together. This is **divide and conquer** in action.
+
+**Pros**: Guaranteed O(n log n) performance, stable sort
+**Cons**: Uses O(n) extra memory for the merge step
+
+## The O(n log n) Barrier
+
+No comparison-based sorting algorithm can do better than O(n log n) in the worst case. This is a mathematically proven lower bound. Merge sort and quicksort achieve this optimal performance.
+
+## Try It Yourself
+
+- Add a counter to track how many comparisons each algorithm makes
+- Implement quicksort (pick a pivot, partition, recurse on each side)
+- Test with sorted, reverse-sorted, and random input — how does performance differ?

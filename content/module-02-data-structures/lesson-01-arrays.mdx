@@ -1,0 +1,161 @@
+---
+title: "Arrays and Dynamic Arrays"
+description: "Learn how arrays store data in contiguous memory and how dynamic arrays grow automatically."
+order: 1
+moduleSlug: "module-02-data-structures"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    # Python uses lists (dynamic arrays)
+    fruits = ["apple", "banana", "cherry"]
+    print("Fruits:", fruits)
+    print("First fruit:", fruits[0])
+    print("Last fruit:", fruits[-1])
+
+    # Adding and removing
+    fruits.append("date")
+    print("After append:", fruits)
+
+    fruits.insert(1, "blueberry")
+    print("After insert:", fruits)
+
+    removed = fruits.pop(2)
+    print(f"Removed '{removed}':", fruits)
+
+    # Iterating
+    print("\nAll fruits:")
+    for i, fruit in enumerate(fruits):
+        print(f"  [{i}] {fruit}")
+
+    # List comprehension
+    lengths = [len(f) for f in fruits]
+    print("Name lengths:", lengths)
+  javascript: |
+    // JavaScript arrays are dynamic
+    let fruits = ["apple", "banana", "cherry"];
+    console.log("Fruits:", fruits);
+    console.log("First fruit:", fruits[0]);
+    console.log("Last fruit:", fruits[fruits.length - 1]);
+
+    // Adding and removing
+    fruits.push("date");
+    console.log("After push:", fruits);
+
+    fruits.splice(1, 0, "blueberry");
+    console.log("After insert:", fruits);
+
+    const removed = fruits.splice(2, 1)[0];
+    console.log(`Removed '${removed}':`, fruits);
+
+    // Iterating
+    console.log("\nAll fruits:");
+    fruits.forEach((fruit, i) => {
+        console.log(`  [${i}] ${fruit}`);
+    });
+
+    // Map
+    const lengths = fruits.map(f => f.length);
+    console.log("Name lengths:", lengths);
+  cpp: |
+    #include <iostream>
+    #include <vector>
+    #include <string>
+    using namespace std;
+
+    int main() {
+        // C++ vector is a dynamic array
+        vector<string> fruits = {"apple", "banana", "cherry"};
+        cout << "First fruit: " << fruits[0] << endl;
+        cout << "Last fruit: " << fruits.back() << endl;
+
+        // Adding elements
+        fruits.push_back("date");
+        cout << "After push_back, size: " << fruits.size() << endl;
+
+        // Insert at position
+        fruits.insert(fruits.begin() + 1, "blueberry");
+
+        // Remove at position
+        fruits.erase(fruits.begin() + 2);
+
+        // Iterating
+        cout << "\nAll fruits:" << endl;
+        for (int i = 0; i < fruits.size(); i++) {
+            cout << "  [" << i << "] " << fruits[i] << endl;
+        }
+        return 0;
+    }
+  java: |
+    import java.util.ArrayList;
+
+    public class Main {
+        public static void main(String[] args) {
+            // Java ArrayList is a dynamic array
+            ArrayList<String> fruits = new ArrayList<>();
+            fruits.add("apple");
+            fruits.add("banana");
+            fruits.add("cherry");
+
+            System.out.println("First fruit: " + fruits.get(0));
+            System.out.println("Last fruit: " + fruits.get(fruits.size() - 1));
+
+            // Adding and removing
+            fruits.add("date");
+            System.out.println("After add: " + fruits);
+
+            fruits.add(1, "blueberry");
+            System.out.println("After insert: " + fruits);
+
+            String removed = fruits.remove(2);
+            System.out.println("Removed '" + removed + "': " + fruits);
+
+            // Iterating
+            System.out.println("\nAll fruits:");
+            for (int i = 0; i < fruits.size(); i++) {
+                System.out.println("  [" + i + "] " + fruits.get(i));
+            }
+        }
+    }
+---
+
+# Arrays and Dynamic Arrays
+
+Arrays are the most fundamental data structure in programming. They store elements in a **contiguous block of memory**, which means accessing any element by index is incredibly fast.
+
+## What is an Array?
+
+An array is an ordered collection of elements where each element has a numeric **index** starting from 0:
+
+| Index | 0 | 1 | 2 | 3 |
+|-------|---|---|---|---|
+| Value | "apple" | "banana" | "cherry" | "date" |
+
+## Static vs Dynamic Arrays
+
+- **Static arrays** (C-style): Fixed size, declared at creation. Cannot grow or shrink.
+- **Dynamic arrays** (Python list, JS array, C++ vector, Java ArrayList): Automatically resize when you add/remove elements.
+
+## Time Complexity
+
+| Operation | Time |
+|-----------|------|
+| Access by index | O(1) |
+| Search (unsorted) | O(n) |
+| Append to end | O(1) amortized |
+| Insert at position | O(n) |
+| Remove at position | O(n) |
+
+Accessing by index is instant because the computer can calculate exactly where in memory the element lives. But inserting or removing in the middle requires shifting all subsequent elements.
+
+## When to Use Arrays
+
+Arrays are your default choice when you need:
+- Fast access by position
+- Simple iteration over all elements
+- A collection that mostly grows at the end
+
+## Try It Yourself
+
+- Create an array of 5 numbers, then print their sum
+- Write code to find the maximum value in an array
+- Reverse an array without using a built-in reverse function

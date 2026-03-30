@@ -1,0 +1,161 @@
+---
+title: "Control Flow — Conditionals & Loops"
+description: "Make your programs smart with if/else decisions and powerful with loops that repeat actions."
+order: 3
+moduleSlug: "module-01-fundamentals"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    # Conditionals - making decisions
+    temperature = 75
+
+    if temperature > 85:
+        print("It's hot outside! Stay hydrated.")
+    elif temperature > 65:
+        print("Nice weather! Perfect for a walk.")
+    else:
+        print("It's cold. Grab a jacket!")
+
+    # Loops - repeating actions
+    print("\nCounting down:")
+    for i in range(5, 0, -1):
+        print(f"  {i}...")
+    print("  Liftoff!")
+
+    # While loop
+    print("\nDoubling until > 100:")
+    num = 1
+    while num <= 100:
+        print(f"  {num}")
+        num *= 2
+  javascript: |
+    // Conditionals - making decisions
+    let temperature = 75;
+
+    if (temperature > 85) {
+        console.log("It's hot outside! Stay hydrated.");
+    } else if (temperature > 65) {
+        console.log("Nice weather! Perfect for a walk.");
+    } else {
+        console.log("It's cold. Grab a jacket!");
+    }
+
+    // Loops - repeating actions
+    console.log("\nCounting down:");
+    for (let i = 5; i > 0; i--) {
+        console.log(`  ${i}...`);
+    }
+    console.log("  Liftoff!");
+
+    // While loop
+    console.log("\nDoubling until > 100:");
+    let num = 1;
+    while (num <= 100) {
+        console.log(`  ${num}`);
+        num *= 2;
+    }
+  cpp: |
+    #include <iostream>
+    using namespace std;
+
+    int main() {
+        // Conditionals - making decisions
+        int temperature = 75;
+
+        if (temperature > 85) {
+            cout << "It's hot outside! Stay hydrated." << endl;
+        } else if (temperature > 65) {
+            cout << "Nice weather! Perfect for a walk." << endl;
+        } else {
+            cout << "It's cold. Grab a jacket!" << endl;
+        }
+
+        // Loops - repeating actions
+        cout << "\nCounting down:" << endl;
+        for (int i = 5; i > 0; i--) {
+            cout << "  " << i << "..." << endl;
+        }
+        cout << "  Liftoff!" << endl;
+
+        // While loop
+        cout << "\nDoubling until > 100:" << endl;
+        int num = 1;
+        while (num <= 100) {
+            cout << "  " << num << endl;
+            num *= 2;
+        }
+        return 0;
+    }
+  java: |
+    public class Main {
+        public static void main(String[] args) {
+            // Conditionals - making decisions
+            int temperature = 75;
+
+            if (temperature > 85) {
+                System.out.println("It's hot outside! Stay hydrated.");
+            } else if (temperature > 65) {
+                System.out.println("Nice weather! Perfect for a walk.");
+            } else {
+                System.out.println("It's cold. Grab a jacket!");
+            }
+
+            // Loops - repeating actions
+            System.out.println("\nCounting down:");
+            for (int i = 5; i > 0; i--) {
+                System.out.println("  " + i + "...");
+            }
+            System.out.println("  Liftoff!");
+
+            // While loop
+            System.out.println("\nDoubling until > 100:");
+            int num = 1;
+            while (num <= 100) {
+                System.out.println("  " + num);
+                num *= 2;
+            }
+        }
+    }
+---
+
+# Control Flow — Conditionals & Loops
+
+So far, your programs execute every line from top to bottom. But real programs need to **make decisions** and **repeat actions**. That's what control flow gives you.
+
+## Conditionals: If / Else
+
+Conditionals let your program choose different paths based on conditions:
+
+- **if**: "If this condition is true, do this"
+- **else if / elif**: "Otherwise, if this other condition is true, do that"
+- **else**: "If nothing above was true, do this as a fallback"
+
+The condition is always an expression that evaluates to `true` or `false`.
+
+## Comparison Operators
+
+| Operator | Meaning |
+|----------|---------|
+| `==` | Equal to |
+| `!=` | Not equal to |
+| `>` | Greater than |
+| `<` | Less than |
+| `>=` | Greater than or equal |
+| `<=` | Less than or equal |
+
+## Loops: For and While
+
+Loops repeat a block of code:
+
+- **For loop**: When you know how many times to repeat
+- **While loop**: When you repeat until a condition becomes false
+
+## Avoiding Infinite Loops
+
+A while loop runs forever if its condition never becomes false. Always make sure something inside the loop changes the condition — otherwise your program will freeze.
+
+## Try It Yourself
+
+- Change the temperature value and run again — see which branch executes
+- Write a loop that prints the first 10 even numbers
+- Create a "guess the number" game using a while loop

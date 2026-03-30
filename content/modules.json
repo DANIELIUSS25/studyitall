@@ -1,0 +1,110 @@
+[
+  {
+    "slug": "module-01-fundamentals",
+    "title": "Programming Fundamentals",
+    "description": "Start your coding journey. Learn variables, control flow, functions, and debugging — the building blocks of every program.",
+    "order": 1,
+    "difficulty": "beginner",
+    "icon": "BookOpen",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-02-data-structures",
+    "title": "Data Structures — Linear Collections",
+    "description": "Master arrays, linked lists, stacks, and queues. Understand Big-O notation and choose the right structure for any problem.",
+    "order": 2,
+    "difficulty": "beginner",
+    "icon": "Layers",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-03-oop",
+    "title": "Object-Oriented Design",
+    "description": "Model real-world systems with classes, inheritance, and polymorphism. Apply SOLID principles to write maintainable code.",
+    "order": 3,
+    "difficulty": "intermediate",
+    "icon": "Boxes",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-04-trees-graphs",
+    "title": "Trees, Graphs & Hashing",
+    "description": "Implement binary trees, BSTs, heaps, hash tables, and graphs. Learn traversals and solve connected-component problems.",
+    "order": 4,
+    "difficulty": "intermediate",
+    "icon": "GitBranch",
+    "estimatedHours": 25
+  },
+  {
+    "slug": "module-05-algorithms",
+    "title": "Algorithms — Sorting & Recursion",
+    "description": "Implement merge sort, quicksort, binary search, and backtracking. Analyze complexity with recurrence relations.",
+    "order": 5,
+    "difficulty": "intermediate",
+    "icon": "Workflow",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-06-databases",
+    "title": "Databases & SQL",
+    "description": "Design normalized schemas, write complex SQL queries, understand indexing, and compare SQL vs NoSQL approaches.",
+    "order": 6,
+    "difficulty": "intermediate",
+    "icon": "Database",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-07-web-dev",
+    "title": "Full-Stack Web Development",
+    "description": "Build RESTful APIs, responsive frontends, and connect everything to a database. Deploy a working web application.",
+    "order": 7,
+    "difficulty": "intermediate",
+    "icon": "Globe",
+    "estimatedHours": 25
+  },
+  {
+    "slug": "module-08-software-eng",
+    "title": "Software Engineering Practices",
+    "description": "Write effective tests, use Git workflows, set up CI/CD pipelines, and conduct code reviews like a professional.",
+    "order": 8,
+    "difficulty": "intermediate",
+    "icon": "GitPullRequest",
+    "estimatedHours": 16
+  },
+  {
+    "slug": "module-09-advanced-algo",
+    "title": "Advanced Algorithms",
+    "description": "Tackle dynamic programming, shortest-path algorithms, minimum spanning trees, and NP-completeness.",
+    "order": 9,
+    "difficulty": "advanced",
+    "icon": "Brain",
+    "estimatedHours": 25
+  },
+  {
+    "slug": "module-10-systems",
+    "title": "Systems Programming & Concurrency",
+    "description": "Understand memory management, threads, synchronization, and async I/O. Build concurrent applications that don't deadlock.",
+    "order": 10,
+    "difficulty": "advanced",
+    "icon": "Cpu",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-11-system-design",
+    "title": "System Design & Architecture",
+    "description": "Design scalable distributed systems. Learn caching, load balancing, message queues, and designing for failure.",
+    "order": 11,
+    "difficulty": "advanced",
+    "icon": "Network",
+    "estimatedHours": 20
+  },
+  {
+    "slug": "module-12-capstone",
+    "title": "Capstone Project",
+    "description": "Execute the full software lifecycle: requirements, design, implementation, testing, deployment, and monitoring.",
+    "order": 12,
+    "difficulty": "advanced",
+    "icon": "Rocket",
+    "estimatedHours": 30
+  }
+]

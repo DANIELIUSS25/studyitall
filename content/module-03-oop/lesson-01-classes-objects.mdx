@@ -1,0 +1,199 @@
+---
+title: "Classes and Objects"
+description: "Learn object-oriented programming — model real-world things with classes, create instances, and encapsulate data."
+order: 1
+moduleSlug: "module-03-oop"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    class BankAccount:
+        def __init__(self, owner, balance=0):
+            self.owner = owner
+            self.balance = balance
+
+        def deposit(self, amount):
+            if amount > 0:
+                self.balance += amount
+                print(f"Deposited ${amount}. Balance: ${self.balance}")
+            else:
+                print("Deposit amount must be positive")
+
+        def withdraw(self, amount):
+            if amount > self.balance:
+                print(f"Insufficient funds! Balance: ${self.balance}")
+            elif amount <= 0:
+                print("Withdrawal amount must be positive")
+            else:
+                self.balance -= amount
+                print(f"Withdrew ${amount}. Balance: ${self.balance}")
+
+        def __str__(self):
+            return f"Account({self.owner}, ${self.balance})"
+
+    # Creating objects
+    alice = BankAccount("Alice", 1000)
+    bob = BankAccount("Bob", 500)
+
+    print(alice)
+    alice.deposit(250)
+    alice.withdraw(100)
+    bob.withdraw(600)  # Insufficient!
+  javascript: |
+    class BankAccount {
+        constructor(owner, balance = 0) {
+            this.owner = owner;
+            this.balance = balance;
+        }
+
+        deposit(amount) {
+            if (amount > 0) {
+                this.balance += amount;
+                console.log(`Deposited $${amount}. Balance: $${this.balance}`);
+            } else {
+                console.log("Deposit amount must be positive");
+            }
+        }
+
+        withdraw(amount) {
+            if (amount > this.balance) {
+                console.log(`Insufficient funds! Balance: $${this.balance}`);
+            } else if (amount <= 0) {
+                console.log("Withdrawal amount must be positive");
+            } else {
+                this.balance -= amount;
+                console.log(`Withdrew $${amount}. Balance: $${this.balance}`);
+            }
+        }
+
+        toString() {
+            return `Account(${this.owner}, $${this.balance})`;
+        }
+    }
+
+    const alice = new BankAccount("Alice", 1000);
+    const bob = new BankAccount("Bob", 500);
+
+    console.log(alice.toString());
+    alice.deposit(250);
+    alice.withdraw(100);
+    bob.withdraw(600);
+  cpp: |
+    #include <iostream>
+    #include <string>
+    using namespace std;
+
+    class BankAccount {
+    private:
+        string owner;
+        double balance;
+    public:
+        BankAccount(string owner, double balance = 0)
+            : owner(owner), balance(balance) {}
+
+        void deposit(double amount) {
+            if (amount > 0) {
+                balance += amount;
+                cout << "Deposited $" << amount
+                     << ". Balance: $" << balance << endl;
+            }
+        }
+
+        void withdraw(double amount) {
+            if (amount > balance) {
+                cout << "Insufficient funds! Balance: $"
+                     << balance << endl;
+            } else if (amount > 0) {
+                balance -= amount;
+                cout << "Withdrew $" << amount
+                     << ". Balance: $" << balance << endl;
+            }
+        }
+
+        void display() {
+            cout << "Account(" << owner << ", $"
+                 << balance << ")" << endl;
+        }
+    };
+
+    int main() {
+        BankAccount alice("Alice", 1000);
+        BankAccount bob("Bob", 500);
+
+        alice.display();
+        alice.deposit(250);
+        alice.withdraw(100);
+        bob.withdraw(600);
+        return 0;
+    }
+  java: |
+    public class Main {
+        static class BankAccount {
+            private String owner;
+            private double balance;
+
+            BankAccount(String owner, double balance) {
+                this.owner = owner;
+                this.balance = balance;
+            }
+
+            void deposit(double amount) {
+                if (amount > 0) {
+                    balance += amount;
+                    System.out.println("Deposited $" + amount +
+                        ". Balance: $" + balance);
+                }
+            }
+
+            void withdraw(double amount) {
+                if (amount > balance) {
+                    System.out.println("Insufficient funds! Balance: $" + balance);
+                } else if (amount > 0) {
+                    balance -= amount;
+                    System.out.println("Withdrew $" + amount +
+                        ". Balance: $" + balance);
+                }
+            }
+
+            public String toString() {
+                return "Account(" + owner + ", $" + balance + ")";
+            }
+        }
+
+        public static void main(String[] args) {
+            BankAccount alice = new BankAccount("Alice", 1000);
+            BankAccount bob = new BankAccount("Bob", 500);
+
+            System.out.println(alice);
+            alice.deposit(250);
+            alice.withdraw(100);
+            bob.withdraw(600);
+        }
+    }
+---
+
+# Classes and Objects
+
+Object-Oriented Programming (OOP) lets you model your code around real-world **things** (objects) rather than just sequences of actions.
+
+## Class = Blueprint, Object = Instance
+
+A **class** is a blueprint that defines what data (attributes) and behaviors (methods) a type of object has. An **object** is a specific instance of that class.
+
+Think of it like this: "BankAccount" is the class (the concept), while "Alice's account with $1,000" is an object (a specific account).
+
+## The Constructor
+
+The constructor is a special method that runs when you create a new object. It sets up the initial state:
+- Python: `__init__`
+- JavaScript: `constructor`
+- C++/Java: A method with the same name as the class
+
+## Encapsulation
+
+Encapsulation means **bundling data and methods together** and controlling access to the internals. The balance of a bank account shouldn't be changed directly — it should only change through `deposit()` and `withdraw()` methods that enforce rules.
+
+## Try It Yourself
+
+- Add a `transfer(amount, other_account)` method
+- Add a transaction history that logs every deposit and withdrawal
+- Create a `SavingsAccount` that earns interest

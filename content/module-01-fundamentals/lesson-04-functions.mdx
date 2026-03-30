@@ -1,0 +1,157 @@
+---
+title: "Functions"
+description: "Organize your code into reusable functions. Learn parameters, return values, and scope."
+order: 4
+moduleSlug: "module-01-fundamentals"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    # Defining and calling functions
+    def greet(name):
+        return f"Hello, {name}! Welcome to coding."
+
+    def calculate_area(length, width):
+        area = length * width
+        return area
+
+    def is_even(number):
+        return number % 2 == 0
+
+    # Using our functions
+    message = greet("Alex")
+    print(message)
+
+    room_area = calculate_area(12, 10)
+    print(f"Room area: {room_area} sq ft")
+
+    for num in range(1, 6):
+        status = "even" if is_even(num) else "odd"
+        print(f"{num} is {status}")
+  javascript: |
+    // Defining and calling functions
+    function greet(name) {
+        return `Hello, ${name}! Welcome to coding.`;
+    }
+
+    function calculateArea(length, width) {
+        const area = length * width;
+        return area;
+    }
+
+    function isEven(number) {
+        return number % 2 === 0;
+    }
+
+    // Using our functions
+    const message = greet("Alex");
+    console.log(message);
+
+    const roomArea = calculateArea(12, 10);
+    console.log(`Room area: ${roomArea} sq ft`);
+
+    for (let num = 1; num <= 5; num++) {
+        const status = isEven(num) ? "even" : "odd";
+        console.log(`${num} is ${status}`);
+    }
+  cpp: |
+    #include <iostream>
+    #include <string>
+    using namespace std;
+
+    // Defining functions
+    string greet(string name) {
+        return "Hello, " + name + "! Welcome to coding.";
+    }
+
+    int calculateArea(int length, int width) {
+        int area = length * width;
+        return area;
+    }
+
+    bool isEven(int number) {
+        return number % 2 == 0;
+    }
+
+    int main() {
+        // Using our functions
+        string message = greet("Alex");
+        cout << message << endl;
+
+        int roomArea = calculateArea(12, 10);
+        cout << "Room area: " << roomArea << " sq ft" << endl;
+
+        for (int num = 1; num <= 5; num++) {
+            string status = isEven(num) ? "even" : "odd";
+            cout << num << " is " << status << endl;
+        }
+        return 0;
+    }
+  java: |
+    public class Main {
+        static String greet(String name) {
+            return "Hello, " + name + "! Welcome to coding.";
+        }
+
+        static int calculateArea(int length, int width) {
+            int area = length * width;
+            return area;
+        }
+
+        static boolean isEven(int number) {
+            return number % 2 == 0;
+        }
+
+        public static void main(String[] args) {
+            String message = greet("Alex");
+            System.out.println(message);
+
+            int roomArea = calculateArea(12, 10);
+            System.out.println("Room area: " + roomArea + " sq ft");
+
+            for (int num = 1; num <= 5; num++) {
+                String status = isEven(num) ? "even" : "odd";
+                System.out.println(num + " is " + status);
+            }
+        }
+    }
+---
+
+# Functions
+
+Functions are the building blocks of organized code. They let you **name a block of code** and **reuse it** whenever you need it.
+
+## Why Functions?
+
+Without functions, you'd copy-paste the same code every time you need it. Functions solve this by letting you:
+- **Write once, use many times**
+- **Give a name** to a complex operation
+- **Break big problems** into small, manageable pieces
+
+## Anatomy of a Function
+
+Every function has:
+1. A **name** that describes what it does
+2. **Parameters** (inputs) — data the function needs to do its work
+3. A **body** — the code that runs when the function is called
+4. A **return value** (output) — the result the function gives back
+
+## Parameters vs Arguments
+
+- **Parameter**: The variable name in the function definition (the placeholder)
+- **Argument**: The actual value you pass when calling the function
+
+## Return Values
+
+`return` sends a value back to the code that called the function. Once a function hits `return`, it stops executing immediately.
+
+A function without a return value is called a **void function** — it performs an action (like printing) but doesn't produce a result you can store.
+
+## Scope
+
+Variables created inside a function are **local** — they only exist inside that function. They're created when the function runs and destroyed when it finishes. This prevents different parts of your program from accidentally interfering with each other.
+
+## Try It Yourself
+
+- Write a function that converts Celsius to Fahrenheit: `F = C * 9/5 + 32`
+- Write a function that takes a list of numbers and returns the largest one
+- Create a function that checks if a string is a palindrome

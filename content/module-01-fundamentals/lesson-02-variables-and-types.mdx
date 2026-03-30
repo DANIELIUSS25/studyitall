@@ -1,0 +1,111 @@
+---
+title: "Variables and Data Types"
+description: "Learn how to store and manipulate data using variables. Understand strings, numbers, booleans, and type systems."
+order: 2
+moduleSlug: "module-01-fundamentals"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    # Variables store data for later use
+    name = "Alice"
+    age = 25
+    height = 5.7
+    is_student = True
+
+    # Python figures out the type automatically
+    print(f"Name: {name}")
+    print(f"Age: {age}")
+    print(f"Height: {height}")
+    print(f"Student: {is_student}")
+    print(f"Type of age: {type(age)}")
+  javascript: |
+    // Variables store data for later use
+    let name = "Alice";
+    let age = 25;
+    let height = 5.7;
+    let isStudent = true;
+
+    // JavaScript figures out the type automatically
+    console.log(`Name: ${name}`);
+    console.log(`Age: ${age}`);
+    console.log(`Height: ${height}`);
+    console.log(`Student: ${isStudent}`);
+    console.log(`Type of age: ${typeof age}`);
+  cpp: |
+    // Variables store data for later use
+    // C++ requires you to declare the type
+    #include <iostream>
+    #include <string>
+    using namespace std;
+
+    int main() {
+        string name = "Alice";
+        int age = 25;
+        double height = 5.7;
+        bool isStudent = true;
+
+        cout << "Name: " << name << endl;
+        cout << "Age: " << age << endl;
+        cout << "Height: " << height << endl;
+        cout << "Student: " << isStudent << endl;
+        return 0;
+    }
+  java: |
+    // Variables store data for later use
+    // Java requires you to declare the type
+    public class Main {
+        public static void main(String[] args) {
+            String name = "Alice";
+            int age = 25;
+            double height = 5.7;
+            boolean isStudent = true;
+
+            System.out.println("Name: " + name);
+            System.out.println("Age: " + age);
+            System.out.println("Height: " + height);
+            System.out.println("Student: " + isStudent);
+        }
+    }
+---
+
+# Variables and Data Types
+
+Variables are the foundation of every program. They let you **store data** and **refer to it by name** so you can use it later.
+
+## What is a Variable?
+
+Think of a variable as a labeled box. The label is the variable's **name**, and the box holds a **value**. You can put something in the box, look at what's inside, or replace it with something new.
+
+## Core Data Types
+
+Every programming language has these fundamental types:
+
+| Type | What it stores | Examples |
+|------|---------------|----------|
+| **String** | Text | `"Hello"`, `"Alice"`, `"42"` |
+| **Integer** | Whole numbers | `1`, `42`, `-7`, `0` |
+| **Float/Double** | Decimal numbers | `3.14`, `5.7`, `-0.001` |
+| **Boolean** | True or false | `true`, `false` |
+
+## Static vs Dynamic Typing
+
+Languages differ in how strict they are about types:
+
+- **Dynamic typing** (Python, JavaScript): The language figures out the type for you. You just assign a value.
+- **Static typing** (C++, Java): You must explicitly declare what type each variable holds. This catches errors earlier.
+
+Neither approach is better — they're different tradeoffs between flexibility and safety.
+
+## Naming Conventions
+
+Good variable names make code readable:
+- Use descriptive names: `user_age` not `x`
+- Be consistent: pick `camelCase` or `snake_case` and stick with it
+- Avoid single letters except for loop counters (`i`, `j`)
+
+## Try It Yourself
+
+In the editor, try:
+- Create a variable for your favorite number and print it
+- Create variables for a product name and price, then print both
+- Try changing a variable's value and printing it again

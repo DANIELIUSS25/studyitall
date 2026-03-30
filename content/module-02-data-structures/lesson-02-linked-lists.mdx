@@ -1,0 +1,219 @@
+---
+title: "Linked Lists"
+description: "Understand linked lists — nodes connected by pointers. Compare with arrays and learn when each is better."
+order: 2
+moduleSlug: "module-02-data-structures"
+languages: ["python", "javascript", "cpp", "java"]
+codeExamples:
+  python: |
+    # Building a linked list from scratch
+    class Node:
+        def __init__(self, data):
+            self.data = data
+            self.next = None
+
+    class LinkedList:
+        def __init__(self):
+            self.head = None
+
+        def append(self, data):
+            new_node = Node(data)
+            if not self.head:
+                self.head = new_node
+                return
+            current = self.head
+            while current.next:
+                current = current.next
+            current.next = new_node
+
+        def display(self):
+            elements = []
+            current = self.head
+            while current:
+                elements.append(str(current.data))
+                current = current.next
+            print(" -> ".join(elements) + " -> None")
+
+        def length(self):
+            count = 0
+            current = self.head
+            while current:
+                count += 1
+                current = current.next
+            return count
+
+    # Using it
+    ll = LinkedList()
+    ll.append(10)
+    ll.append(20)
+    ll.append(30)
+    ll.append(40)
+    ll.display()
+    print(f"Length: {ll.length()}")
+  javascript: |
+    // Building a linked list from scratch
+    class Node {
+        constructor(data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+
+    class LinkedList {
+        constructor() { this.head = null; }
+
+        append(data) {
+            const newNode = new Node(data);
+            if (!this.head) { this.head = newNode; return; }
+            let current = this.head;
+            while (current.next) current = current.next;
+            current.next = newNode;
+        }
+
+        display() {
+            const elements = [];
+            let current = this.head;
+            while (current) {
+                elements.push(current.data);
+                current = current.next;
+            }
+            console.log(elements.join(" -> ") + " -> null");
+        }
+
+        length() {
+            let count = 0, current = this.head;
+            while (current) { count++; current = current.next; }
+            return count;
+        }
+    }
+
+    const ll = new LinkedList();
+    ll.append(10);
+    ll.append(20);
+    ll.append(30);
+    ll.append(40);
+    ll.display();
+    console.log(`Length: ${ll.length()}`);
+  cpp: |
+    #include <iostream>
+    using namespace std;
+
+    struct Node {
+        int data;
+        Node* next;
+        Node(int d) : data(d), next(nullptr) {}
+    };
+
+    class LinkedList {
+    public:
+        Node* head = nullptr;
+
+        void append(int data) {
+            Node* newNode = new Node(data);
+            if (!head) { head = newNode; return; }
+            Node* current = head;
+            while (current->next) current = current->next;
+            current->next = newNode;
+        }
+
+        void display() {
+            Node* current = head;
+            while (current) {
+                cout << current->data;
+                if (current->next) cout << " -> ";
+                current = current->next;
+            }
+            cout << " -> nullptr" << endl;
+        }
+
+        int length() {
+            int count = 0;
+            Node* current = head;
+            while (current) { count++; current = current->next; }
+            return count;
+        }
+    };
+
+    int main() {
+        LinkedList ll;
+        ll.append(10);
+        ll.append(20);
+        ll.append(30);
+        ll.append(40);
+        ll.display();
+        cout << "Length: " << ll.length() << endl;
+        return 0;
+    }
+  java: |
+    public class Main {
+        static class Node {
+            int data;
+            Node next;
+            Node(int d) { data = d; next = null; }
+        }
+
+        static Node head = null;
+
+        static void append(int data) {
+            Node newNode = new Node(data);
+            if (head == null) { head = newNode; return; }
+            Node current = head;
+            while (current.next != null) current = current.next;
+            current.next = newNode;
+        }
+
+        static void display() {
+            Node current = head;
+            StringBuilder sb = new StringBuilder();
+            while (current != null) {
+                sb.append(current.data);
+                if (current.next != null) sb.append(" -> ");
+                current = current.next;
+            }
+            sb.append(" -> null");
+            System.out.println(sb.toString());
+        }
+
+        static int length() {
+            int count = 0;
+            Node current = head;
+            while (current != null) { count++; current = current.next; }
+            return count;
+        }
+
+        public static void main(String[] args) {
+            append(10); append(20); append(30); append(40);
+            display();
+            System.out.println("Length: " + length());
+        }
+    }
+---
+
+# Linked Lists
+
+A linked list is a chain of **nodes**, where each node holds data and a **pointer** to the next node. Unlike arrays, linked list elements aren't stored in contiguous memory — they can be scattered anywhere.
+
+## Array vs Linked List
+
+| Operation | Array | Linked List |
+|-----------|-------|-------------|
+| Access by index | O(1) | O(n) |
+| Insert at beginning | O(n) | O(1) |
+| Insert at end | O(1) | O(n)* |
+| Insert in middle | O(n) | O(1)** |
+| Memory | Contiguous block | Scattered nodes |
+
+*O(1) if you maintain a tail pointer. **O(1) if you already have a reference to the insertion point.
+
+## When to Use Linked Lists
+
+Use a linked list when:
+- You frequently insert/remove at the beginning
+- You don't need random access by index
+- You want O(1) insertions once you have a reference to the right position
+
+## Try It Yourself
+
+- Add a `prepend` method that inserts at the beginning
+- Add a `delete` method that removes a node by value
+- Add a `reverse` method that reverses the entire list
