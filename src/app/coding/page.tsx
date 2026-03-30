@@ -1,8 +1,5 @@
 import Link from "next/link";
 import {
-  Code2,
-  Play,
-  Headphones,
   BookOpen,
   ArrowRight,
   Layers,
@@ -16,7 +13,7 @@ import {
   Cpu,
   Network,
   Rocket,
-  Clock,
+  ChevronRight,
 } from "lucide-react";
 import { getModules } from "@/lib/content";
 import { DIFFICULTY_COLORS } from "@/lib/types";
@@ -29,18 +26,18 @@ export const metadata: Metadata = {
 };
 
 const ICON_MAP: Record<string, React.ReactNode> = {
-  BookOpen: <BookOpen size={24} />,
-  Layers: <Layers size={24} />,
-  Boxes: <Boxes size={24} />,
-  GitBranch: <GitBranch size={24} />,
-  Workflow: <Workflow size={24} />,
-  Database: <Database size={24} />,
-  Globe: <Globe size={24} />,
-  GitPullRequest: <GitPullRequest size={24} />,
-  Brain: <Brain size={24} />,
-  Cpu: <Cpu size={24} />,
-  Network: <Network size={24} />,
-  Rocket: <Rocket size={24} />,
+  BookOpen: <BookOpen size={20} />,
+  Layers: <Layers size={20} />,
+  Boxes: <Boxes size={20} />,
+  GitBranch: <GitBranch size={20} />,
+  Workflow: <Workflow size={20} />,
+  Database: <Database size={20} />,
+  Globe: <Globe size={20} />,
+  GitPullRequest: <GitPullRequest size={20} />,
+  Brain: <Brain size={20} />,
+  Cpu: <Cpu size={20} />,
+  Network: <Network size={20} />,
+  Rocket: <Rocket size={20} />,
 };
 
 export default function CodingPage() {
@@ -49,134 +46,73 @@ export default function CodingPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-600/20 via-transparent to-purple-600/20" />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 relative">
-          <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 text-brand-400 text-sm font-medium mb-6">
-              <Code2 size={16} />
-              Free &middot; Interactive &middot; Beginner to Advanced
+      <section className="border-b border-[var(--border)]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+          <div className="max-w-2xl">
+            <div className="flex flex-wrap gap-2 mb-6">
+              {["Python", "JavaScript", "C++", "Java"].map((l) => (
+                <span
+                  key={l}
+                  className="px-3 py-1 rounded-full text-xs font-semibold bg-[var(--muted)] border border-[var(--border)]"
+                >
+                  {l}
+                </span>
+              ))}
             </div>
-            <h1 className="text-4xl sm:text-6xl font-bold tracking-tight mb-6">
-              Learn to Code.{" "}
-              <span className="text-brand-500">Build Anything.</span>
+
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.1]">
+              Learn to code,
+              <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-500 to-violet-500">
+                for real
+              </span>
             </h1>
-            <p className="text-lg sm:text-xl text-[var(--muted-foreground)] mb-8 max-w-2xl mx-auto">
-              Master Python, JavaScript, C++, and Java with interactive lessons,
-              a live code editor, and audio narration. From your first
-              &ldquo;Hello World&rdquo; to system design.
+
+            <p className="mt-5 text-lg text-[var(--muted-foreground)] leading-relaxed max-w-lg">
+              12 modules. Four languages. A live code editor in every lesson.
+              From your first line of code to designing scalable systems.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
               <Link
                 href="/lesson/module-01-fundamentals/lesson-01-what-is-programming"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2.5 px-7 py-3.5 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-semibold text-sm transition-all hover:shadow-lg hover:shadow-brand-500/25"
               >
-                Start Learning
-                <ArrowRight size={18} />
+                Start Lesson 1
+                <ArrowRight size={16} />
               </Link>
               <Link
                 href="/curriculum"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[var(--muted)] hover:bg-[var(--border)] rounded-lg font-medium transition-colors"
+                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full font-semibold text-sm border border-[var(--border)] hover:bg-[var(--muted)] transition-colors"
               >
-                View Curriculum
+                Full curriculum
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 bg-[var(--muted)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-              <div className="w-12 h-12 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500 mb-4">
-                <Play size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Live Code Editor</h3>
-              <p className="text-[var(--muted-foreground)]">
-                Write and run Python, JavaScript, C++, and Java directly in your
-                browser. See results instantly.
-              </p>
-            </div>
-            <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-              <div className="w-12 h-12 rounded-lg bg-green-500/10 flex items-center justify-center text-green-500 mb-4">
-                <Headphones size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">Audio Lessons</h3>
-              <p className="text-[var(--muted-foreground)]">
-                Every lesson comes with audio narration. Learn while commuting,
-                exercising, or on the go.
-              </p>
-            </div>
-            <div className="bg-[var(--card)] rounded-xl p-6 border border-[var(--border)]">
-              <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-4">
-                <BookOpen size={24} />
-              </div>
-              <h3 className="text-lg font-semibold mb-2">12 Modules</h3>
-              <p className="text-[var(--muted-foreground)]">
-                Structured path from fundamentals to system design. Each module
-                builds on the last with real projects.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Languages */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-center mb-4">
-            4 Languages. One Curriculum.
-          </h2>
-          <p className="text-center text-[var(--muted-foreground)] mb-10 max-w-2xl mx-auto">
-            Every lesson shows you the same concept in all four languages. Switch
-            between them with a single click.
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { name: "Python", color: "from-yellow-400 to-blue-500", desc: "Beginner-friendly" },
-              { name: "JavaScript", color: "from-yellow-400 to-yellow-600", desc: "Web & full-stack" },
-              { name: "C++", color: "from-blue-400 to-blue-700", desc: "Performance" },
-              { name: "Java", color: "from-red-400 to-orange-500", desc: "Enterprise" },
-            ].map((lang) => (
-              <div
-                key={lang.name}
-                className="bg-[var(--card)] rounded-xl p-5 border border-[var(--border)] text-center"
-              >
-                <div
-                  className={`w-12 h-12 rounded-lg bg-gradient-to-br ${lang.color} mx-auto mb-3 flex items-center justify-center text-white font-bold text-sm`}
-                >
-                  {lang.name.slice(0, 2)}
-                </div>
-                <h3 className="font-semibold">{lang.name}</h3>
-                <p className="text-sm text-[var(--muted-foreground)] mt-1">
-                  {lang.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Curriculum */}
-      <section className="py-16 bg-[var(--muted)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between mb-10">
+      {/* Modules grid */}
+      <section className="py-20 sm:py-24">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-end justify-between mb-10">
             <div>
-              <h2 className="text-2xl font-bold">Full Curriculum</h2>
-              <p className="text-[var(--muted-foreground)] mt-1">
-                12 modules &middot; 240+ hours &middot; Beginner to Advanced
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+                12 modules
+              </h2>
+              <p className="mt-1 text-[var(--muted-foreground)]">
+                240+ hours &middot; Beginner to advanced
               </p>
             </div>
             <Link
               href="/curriculum"
-              className="hidden sm:inline-flex items-center gap-1 text-brand-500 hover:text-brand-400 font-medium"
+              className="hidden sm:inline-flex items-center gap-1 text-sm text-brand-500 hover:text-brand-600 font-semibold transition-colors"
             >
-              View details <ArrowRight size={16} />
+              View details <ChevronRight size={16} />
             </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
             {modules.map((mod) => (
               <Link
                 key={mod.slug}
@@ -185,35 +121,33 @@ export default function CodingPage() {
                     ? `/lesson/${mod.slug}/${mod.lessons[0].slug}`
                     : "/curriculum"
                 }
-                className="bg-[var(--card)] rounded-xl p-5 border border-[var(--border)] hover:border-brand-500/50 transition-colors group"
+                className="group flex items-start gap-4 p-5 rounded-xl border border-[var(--border)] hover:bg-[var(--muted)] transition-all"
               >
-                <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500 shrink-0">
-                    {ICON_MAP[mod.icon] || <BookOpen size={24} />}
-                  </div>
-                  <div className="min-w-0">
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xs text-[var(--muted-foreground)]">
-                        Module {mod.order}
-                      </span>
-                      <span
-                        className={`text-xs px-2 py-0.5 rounded-full ${DIFFICULTY_COLORS[mod.difficulty]}`}
-                      >
-                        {mod.difficulty}
-                      </span>
-                    </div>
-                    <h3 className="font-semibold group-hover:text-brand-500 transition-colors text-sm">
-                      {mod.title}
-                    </h3>
-                    <p className="text-xs text-[var(--muted-foreground)] mt-1 line-clamp-2">
-                      {mod.description}
-                    </p>
-                    <div className="text-xs text-[var(--muted-foreground)] mt-2 flex items-center gap-1">
-                      <Clock size={11} />
-                      {mod.lessons?.length || 0} lessons &middot; ~{mod.estimatedHours}h
-                    </div>
-                  </div>
+                <div className="w-9 h-9 rounded-lg bg-brand-500/10 flex items-center justify-center text-brand-500 shrink-0 mt-0.5">
+                  {ICON_MAP[mod.icon] || <BookOpen size={20} />}
                 </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-2 mb-0.5">
+                    <span className="text-[11px] font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
+                      Module {mod.order}
+                    </span>
+                    <span
+                      className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold uppercase ${DIFFICULTY_COLORS[mod.difficulty]}`}
+                    >
+                      {mod.difficulty}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-sm group-hover:text-brand-500 transition-colors">
+                    {mod.title}
+                  </h3>
+                  <p className="text-xs text-[var(--muted-foreground)] mt-1 line-clamp-2 leading-relaxed">
+                    {mod.description}
+                  </p>
+                </div>
+                <ChevronRight
+                  size={16}
+                  className="text-[var(--border)] group-hover:text-brand-500 shrink-0 mt-1 transition-colors"
+                />
               </Link>
             ))}
           </div>
@@ -221,18 +155,20 @@ export default function CodingPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Coding?</h2>
-          <p className="text-[var(--muted-foreground)] mb-8">
-            Jump into your first lesson. No sign-up required.
+      <section className="border-t border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--muted)]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+          <h2 className="text-3xl font-extrabold tracking-tight">
+            Ready to write code?
+          </h2>
+          <p className="mt-3 text-[var(--muted-foreground)]">
+            Your first lesson is 30 seconds away. No setup required.
           </p>
           <Link
             href="/lesson/module-01-fundamentals/lesson-01-what-is-programming"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-lg font-medium text-lg transition-colors"
+            className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white rounded-full font-semibold tracking-wide transition-all hover:shadow-lg hover:shadow-brand-500/25"
           >
             Start Your First Lesson
-            <ArrowRight size={20} />
+            <ArrowRight size={18} />
           </Link>
         </div>
       </section>
