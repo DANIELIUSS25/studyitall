@@ -18,11 +18,11 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "StudyItAll - Learn to Code from Beginner to Advanced",
+    default: "StudyItAll - Learn Everything. One Platform.",
     template: "%s | StudyItAll",
   },
   description:
-    "Master Python, JavaScript, C++, and Java with interactive lessons, live code execution, and audio narration. Free coding curriculum from beginner to advanced.",
+    "Master coding, math, science, history, English, and more with interactive lessons, audio narration, and hands-on practice. A product of Newra.io, powered by Vantlir.com.",
 };
 
 export default function RootLayout({
