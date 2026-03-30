@@ -6,10 +6,10 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useState } from "react";
 
 const NAV_LINKS = [
+  { href: "/courses", label: "Courses" },
   { href: "/coding", label: "Coding" },
-  { href: "/curriculum", label: "Curriculum" },
-  { href: "/subjects/mathematics", label: "Math" },
-  { href: "/subjects/science", label: "Science" },
+  { href: "/quizzes", label: "Quizzes" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Header() {

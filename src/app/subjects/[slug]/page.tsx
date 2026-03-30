@@ -9,12 +9,14 @@ import {
   Landmark,
   BookText,
   Languages,
+  Brain,
 } from "lucide-react";
 import { SUBJECTS, getSubject } from "@/lib/subjects";
 import { Metadata } from "next";
 
 const ICON_MAP: Record<string, React.ReactNode> = {
   Code2: <Code2 size={40} />,
+  Brain: <Brain size={40} />,
   Calculator: <Calculator size={40} />,
   FlaskConical: <FlaskConical size={40} />,
   Landmark: <Landmark size={40} />,
@@ -63,6 +65,18 @@ export default async function SubjectPage({
 
   // Sample topics for each subject
   const TOPIC_MAP: Record<string, string[]> = {
+    ai: [
+      "What is Artificial Intelligence?",
+      "Machine Learning Fundamentals",
+      "Supervised vs Unsupervised Learning",
+      "Neural Networks & Deep Learning",
+      "Natural Language Processing",
+      "Computer Vision Basics",
+      "Prompt Engineering",
+      "Building AI Applications with Python",
+      "Ethics in AI",
+      "Deploying ML Models",
+    ],
     mathematics: [
       "Arithmetic & Number Sense",
       "Pre-Algebra",
@@ -114,6 +128,16 @@ export default async function SubjectPage({
       "Future & Conditional",
       "Conversational Spanish",
       "Culture & Context",
+    ],
+    thai: [
+      "The Thai Alphabet (44 Consonants)",
+      "Vowels & Tone Marks",
+      "The Five Tones of Thai",
+      "Greetings & Polite Expressions",
+      "Numbers & Counting",
+      "Everyday Phrases & Questions",
+      "Reading Thai Script",
+      "Thai Culture & Etiquette",
     ],
   };
 

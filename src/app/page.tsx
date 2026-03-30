@@ -6,23 +6,136 @@ import {
   Landmark,
   BookText,
   Languages,
+  Brain,
   ArrowRight,
   Headphones,
   Terminal,
   GraduationCap,
   Zap,
   ChevronRight,
+  Newspaper,
 } from "lucide-react";
 import { SUBJECTS } from "@/lib/subjects";
 
+import { getAllPosts } from "@/lib/blog";
+
 const ICON_MAP: Record<string, React.ReactNode> = {
   Code2: <Code2 size={24} />,
+  Brain: <Brain size={24} />,
   Calculator: <Calculator size={24} />,
   FlaskConical: <FlaskConical size={24} />,
   Landmark: <Landmark size={24} />,
   BookText: <BookText size={24} />,
   Languages: <Languages size={24} />,
 };
+
+function BlogAndQuizzesSection() {
+  const posts = getAllPosts().slice(0, 3);
+
+  return (
+    <section className="py-20 sm:py-24 border-t border-[var(--border)]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Blog */}
+          <div>
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-extrabold tracking-tight flex items-center gap-2">
+                <Newspaper size={22} className="text-brand-500" />
+                Blog
+              </h2>
+              <Link
+                href="/blog"
+                className="text-sm text-brand-500 hover:text-brand-600 font-semibold"
+              >
+                All posts &rarr;
+              </Link>
+            </div>
+            <div className="space-y-1">
+              {posts.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group block py-4 border-b border-[var(--border)]"
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-500">
+                      {post.category}
+                    </span>
+                    <span className="text-[10px] text-[var(--muted-foreground)]">
+                      {post.readTime}
+                    </span>
+                  </div>
+                  <h3 className="font-bold text-sm group-hover:text-brand-500 transition-colors leading-snug">
+                    {post.title}
+                  </h3>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Quick links */}
+          <div>
+            <h2 className="text-2xl font-extrabold tracking-tight mb-6">
+              Explore more
+            </h2>
+            <div className="space-y-3">
+              {[
+                {
+                  href: "/quizzes",
+                  title: "Quizzes",
+                  desc: "Test your Python, JavaScript, and AI knowledge with instant feedback",
+                  badge: "Interactive",
+                },
+                {
+                  href: "/courses",
+                  title: "All Courses",
+                  desc: "Browse every subject — coding, AI, math, science, languages, and more",
+                  badge: "8 subjects",
+                },
+                {
+                  href: "/curriculum",
+                  title: "Coding Curriculum",
+                  desc: "12 modules from fundamentals to system design across 4 languages",
+                  badge: "240+ hours",
+                },
+                {
+                  href: "/blog",
+                  title: "Learning Blog",
+                  desc: "Guides on coding, AI, career advice, and language learning tips",
+                  badge: "SEO articles",
+                },
+              ].map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className="group flex items-center gap-4 p-4 rounded-xl border border-[var(--border)] hover:bg-[var(--muted)] transition-all"
+                >
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <h3 className="font-bold text-sm group-hover:text-brand-500 transition-colors">
+                        {item.title}
+                      </h3>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-[var(--muted)] text-[var(--muted-foreground)] font-medium">
+                        {item.badge}
+                      </span>
+                    </div>
+                    <p className="text-xs text-[var(--muted-foreground)] mt-0.5">
+                      {item.desc}
+                    </p>
+                  </div>
+                  <ChevronRight
+                    size={16}
+                    className="text-[var(--border)] group-hover:text-brand-500 shrink-0 transition-colors"
+                  />
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default function Home() {
   return (
@@ -44,7 +157,7 @@ export default function Home() {
         <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-32 pb-20 sm:pb-28">
           <div className="max-w-3xl">
             <p className="text-brand-500 font-semibold tracking-wide text-sm mb-4">
-              Free. No sign-up required.
+              StudyItAll.com &mdash; Free. No sign-up required.
             </p>
 
             <h1 className="text-[2.75rem] sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-[1.05]">
@@ -386,6 +499,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════ BLOG + QUIZZES ═══════ */}
+      <BlogAndQuizzesSection />
 
       {/* ═══════ FINAL CTA ═══════ */}
       <section className="border-t border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--muted)]">

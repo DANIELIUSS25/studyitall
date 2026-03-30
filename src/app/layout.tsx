@@ -17,12 +17,70 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://studyitall.com"),
   title: {
-    default: "StudyItAll - Learn Everything. One Platform.",
-    template: "%s | StudyItAll",
+    default: "StudyItAll.com — Learn Coding, AI, Languages & More Free",
+    template: "%s | StudyItAll.com",
   },
   description:
-    "Master coding, math, science, history, English, and more with interactive lessons, audio narration, and hands-on practice. A product of Newra.io, powered by Vantlir.com.",
+    "Free interactive lessons in coding, AI, math, science, history, English, Spanish, and Thai. Live code editor, audio narration, quizzes, and structured courses. No sign-up required.",
+  keywords: [
+    "learn coding free",
+    "learn programming online",
+    "python tutorial",
+    "javascript tutorial",
+    "learn AI",
+    "machine learning course",
+    "learn thai online",
+    "learn spanish free",
+    "free online courses",
+    "coding for beginners",
+    "studyitall",
+    "study it all",
+    "interactive coding lessons",
+    "programming quizzes",
+  ],
+  authors: [{ name: "StudyItAll.com" }],
+  creator: "StudyItAll.com",
+  publisher: "Newra.io",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://studyitall.com",
+    siteName: "StudyItAll.com",
+    title: "StudyItAll.com — Learn Coding, AI, Languages & More Free",
+    description:
+      "Free interactive lessons in coding, AI, math, science, and languages. Live code editor, audio narration, and structured courses.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StudyItAll.com — Learn Coding, AI, Languages & More Free",
+    description:
+      "Free interactive lessons in coding, AI, math, science, and languages.",
+  },
+  alternates: {
+    canonical: "https://studyitall.com",
+  },
+};
+
+// JSON-LD structured data for the entire site
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "StudyItAll.com",
+  url: "https://studyitall.com",
+  description:
+    "Free interactive education platform for coding, AI, math, science, history, and languages.",
+  publisher: {
+    "@type": "Organization",
+    name: "StudyItAll.com",
+    url: "https://studyitall.com",
+  },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://studyitall.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
 };
 
 export default function RootLayout({
@@ -32,6 +90,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} font-[family-name:var(--font-geist-sans)] antialiased min-h-screen flex flex-col`}
       >
