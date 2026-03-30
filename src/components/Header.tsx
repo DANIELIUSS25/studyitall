@@ -15,12 +15,12 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--background)]/90 backdrop-blur-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <Link href="/" className="flex items-center gap-2.5 font-bold text-xl">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-purple-600 flex items-center justify-center">
-              <BookOpen className="text-white" size={18} />
+        <div className="flex items-center justify-between h-14">
+          <Link href="/" className="flex items-center gap-2 font-bold text-lg">
+            <div className="w-7 h-7 rounded-lg bg-brand-600 flex items-center justify-center">
+              <BookOpen className="text-white" size={15} />
             </div>
             <span>StudyItAll</span>
           </Link>
@@ -31,7 +31,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors text-sm font-medium"
+                className="text-[var(--muted-foreground)] hover:text-[var(--foreground)] transition-colors text-sm"
               >
                 {link.label}
               </Link>
@@ -39,7 +39,7 @@ export function Header() {
             <ThemeToggle />
           </nav>
 
-          {/* Mobile menu button */}
+          {/* Mobile */}
           <div className="flex md:hidden items-center gap-2">
             <ThemeToggle />
             <button
@@ -52,7 +52,6 @@ export function Header() {
           </div>
         </div>
 
-        {/* Mobile nav */}
         {menuOpen && (
           <nav className="md:hidden pb-4 space-y-1">
             {NAV_LINKS.map((link) => (
