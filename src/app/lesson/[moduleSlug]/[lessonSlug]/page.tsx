@@ -8,6 +8,7 @@ import { LessonContent } from "@/components/lesson/LessonContent";
 import { CodePlayground } from "@/components/lesson/CodePlayground";
 import { AudioPlayer } from "@/components/lesson/AudioPlayer";
 import { Metadata } from "next";
+import { UpgradePrompt } from "@/components/upgrade/UpgradePrompt";
 
 interface PageParams {
   moduleSlug: string;
@@ -100,6 +101,14 @@ export default async function LessonPage({
           codeExamples={lesson.codeExamples}
         />
       </section>
+
+      {/* Upgrade nudge */}
+      <div className="mb-10">
+        <UpgradePrompt
+          variant="inline-nudge"
+          subjectName={mod?.title || "coding"}
+        />
+      </div>
 
       {/* Navigation */}
       <nav className="flex items-center justify-between gap-4 pt-8 border-t border-[var(--border)]">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Metadata } from "next";
 import { QuizCard } from "@/components/quiz/QuizCard";
 import type { QuizQuestion } from "@/components/quiz/QuizCard";
+import { UpgradePrompt } from "@/components/upgrade/UpgradePrompt";
 
 export const metadata: Metadata = {
   title: "Quizzes — Test Your Knowledge",
@@ -124,7 +125,11 @@ export default function QuizzesPage() {
         <QuizCard title="JavaScript Essentials" questions={JS_QUIZ} />
       </div>
 
-      <div className="mt-16 p-8 rounded-2xl border border-[var(--border)] bg-[var(--muted)] text-center">
+      <div className="mt-10">
+        <UpgradePrompt variant="quiz-limit" />
+      </div>
+
+      <div className="mt-10 p-8 rounded-2xl border border-[var(--border)] bg-[var(--muted)] text-center">
         <h3 className="text-xl font-bold mb-2">Want to learn more?</h3>
         <p className="text-[var(--muted-foreground)] mb-6">
           Quizzes are great for review, but real learning happens in our
