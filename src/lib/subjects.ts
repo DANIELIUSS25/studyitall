@@ -4,8 +4,12 @@ export interface Subject {
   tagline: string;
   description: string;
   icon: string;
-  color: string;
-  gradient: string;
+  /** Tailwind bg class for icon circle */
+  iconBg: string;
+  /** Tailwind text class for icon */
+  iconColor: string;
+  /** Tailwind bg class for card left-stripe */
+  stripe: string;
   topicCount: number;
   lessonCount: number;
   comingSoon?: boolean;
@@ -15,24 +19,26 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "coding",
     name: "Coding",
-    tagline: "Build anything with code",
+    tagline: "Python, JavaScript, C++, Java",
     description:
-      "Master Python, JavaScript, C++, and Java with interactive lessons, a live code editor, and audio narration. From your first program to system design.",
+      "Master four languages with a live code editor, audio narration, and 12 structured modules.",
     icon: "Code2",
-    color: "text-indigo-500",
-    gradient: "from-indigo-500 to-purple-600",
+    iconBg: "bg-blue-100 dark:bg-blue-500/20",
+    iconColor: "text-blue-600 dark:text-blue-400",
+    stripe: "bg-blue-500",
     topicCount: 12,
     lessonCount: 50,
   },
   {
     slug: "ai",
     name: "Artificial Intelligence",
-    tagline: "Understand and build with AI",
+    tagline: "Machine learning, neural nets, prompt engineering",
     description:
-      "Learn machine learning, neural networks, prompt engineering, and how to build AI-powered applications. From fundamentals to deploying real models.",
+      "From fundamentals to deploying real models. Learn to build with AI.",
     icon: "Brain",
-    color: "text-violet-500",
-    gradient: "from-violet-500 to-purple-600",
+    iconBg: "bg-violet-100 dark:bg-violet-500/20",
+    iconColor: "text-violet-600 dark:text-violet-400",
+    stripe: "bg-violet-500",
     topicCount: 10,
     lessonCount: 0,
     comingSoon: true,
@@ -40,12 +46,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "mathematics",
     name: "Mathematics",
-    tagline: "From arithmetic to calculus",
+    tagline: "Algebra through calculus and statistics",
     description:
-      "Build a rock-solid math foundation. Master algebra, geometry, trigonometry, statistics, and calculus with visual explanations and practice problems.",
+      "Visual explanations and practice problems from arithmetic to linear algebra.",
     icon: "Calculator",
-    color: "text-blue-500",
-    gradient: "from-blue-500 to-cyan-500",
+    iconBg: "bg-cyan-100 dark:bg-cyan-500/20",
+    iconColor: "text-cyan-600 dark:text-cyan-400",
+    stripe: "bg-cyan-500",
     topicCount: 10,
     lessonCount: 0,
     comingSoon: true,
@@ -53,12 +60,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "science",
     name: "Science",
-    tagline: "Understand the natural world",
+    tagline: "Physics, chemistry, biology",
     description:
-      "Explore physics, chemistry, and biology through clear explanations, real-world examples, and interactive simulations. Science made approachable.",
+      "Real-world examples and interactive simulations across three core sciences.",
     icon: "FlaskConical",
-    color: "text-green-500",
-    gradient: "from-green-500 to-emerald-500",
+    iconBg: "bg-emerald-100 dark:bg-emerald-500/20",
+    iconColor: "text-emerald-600 dark:text-emerald-400",
+    stripe: "bg-emerald-500",
     topicCount: 8,
     lessonCount: 0,
     comingSoon: true,
@@ -66,12 +74,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "history",
     name: "History",
-    tagline: "Learn from the past",
+    tagline: "Ancient civilizations to the modern era",
     description:
-      "Journey through world history from ancient civilizations to the modern era. Understand the events, people, and ideas that shaped our world.",
+      "Events, people, and ideas that shaped our world. Timeline-based learning.",
     icon: "Landmark",
-    color: "text-amber-500",
-    gradient: "from-amber-500 to-orange-500",
+    iconBg: "bg-amber-100 dark:bg-amber-500/20",
+    iconColor: "text-amber-600 dark:text-amber-400",
+    stripe: "bg-amber-500",
     topicCount: 9,
     lessonCount: 0,
     comingSoon: true,
@@ -79,12 +88,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "english",
     name: "English",
-    tagline: "Master reading & writing",
+    tagline: "Grammar, vocabulary, writing",
     description:
-      "Strengthen your grammar, expand your vocabulary, improve reading comprehension, and develop powerful writing skills for academic and professional success.",
+      "Strengthen reading comprehension and develop powerful writing skills.",
     icon: "BookText",
-    color: "text-rose-500",
-    gradient: "from-rose-500 to-pink-500",
+    iconBg: "bg-rose-100 dark:bg-rose-500/20",
+    iconColor: "text-rose-600 dark:text-rose-400",
+    stripe: "bg-rose-500",
     topicCount: 7,
     lessonCount: 0,
     comingSoon: true,
@@ -92,12 +102,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "spanish",
     name: "Spanish",
-    tagline: "Habla espa\u00f1ol",
+    tagline: "Vocabulary, grammar, conversation",
     description:
-      "Learn Spanish from scratch or sharpen your skills. Vocabulary, grammar, conversation practice, and cultural context to become conversational.",
+      "Learn Spanish from scratch with audio pronunciation and cultural context.",
     icon: "Languages",
-    color: "text-red-500",
-    gradient: "from-red-500 to-yellow-500",
+    iconBg: "bg-orange-100 dark:bg-orange-500/20",
+    iconColor: "text-orange-600 dark:text-orange-400",
+    stripe: "bg-orange-500",
     topicCount: 8,
     lessonCount: 0,
     comingSoon: true,
@@ -105,12 +116,13 @@ export const SUBJECTS: Subject[] = [
   {
     slug: "thai",
     name: "Thai",
-    tagline: "\u0e2a\u0e27\u0e31\u0e2a\u0e14\u0e35\u0e04\u0e23\u0e31\u0e1a",
+    tagline: "Alphabet, tones, phrases",
     description:
-      "Learn to read, write, and speak Thai. Master the alphabet, tones, everyday phrases, and cultural context to communicate confidently in Thailand.",
+      "Master the Thai alphabet, five tones, and everyday conversation.",
     icon: "Languages",
-    color: "text-sky-500",
-    gradient: "from-sky-500 to-blue-500",
+    iconBg: "bg-sky-100 dark:bg-sky-500/20",
+    iconColor: "text-sky-600 dark:text-sky-400",
+    stripe: "bg-sky-500",
     topicCount: 8,
     lessonCount: 0,
     comingSoon: true,

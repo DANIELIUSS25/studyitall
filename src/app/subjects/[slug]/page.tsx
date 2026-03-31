@@ -156,7 +156,7 @@ export default async function SubjectPage({
       {/* Subject header */}
       <div className="text-center mb-12">
         <div
-          className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${subject.gradient} flex items-center justify-center text-white mx-auto mb-6`}
+          className={`w-20 h-20 rounded-2xl ${subject.iconBg} ${subject.iconColor} flex items-center justify-center mx-auto mb-6`}
         >
           {ICON_MAP[subject.icon]}
         </div>
