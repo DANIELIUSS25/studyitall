@@ -10,6 +10,7 @@ import { useState } from "react";
 const NAV_LINKS = [
   { href: "/courses", label: "Courses" },
   { href: "/coding", label: "Coding" },
+  { href: "/games", label: "Games" },
   { href: "/quizzes", label: "Quizzes" },
   { href: "/blog", label: "Blog" },
   { href: "/pricing", label: "Pricing" },

@@ -229,6 +229,367 @@ function FlashcardGame() {
   );
 }
 
+/* ── Memory Match Game ── */
+function MemoryMatchGame() {
+  const PAIRS = [
+    { term: "let", match: "Variable" },
+    { term: "if", match: "Conditional" },
+    { term: "for", match: "Loop" },
+    { term: "def", match: "Function" },
+    { term: "[]", match: "Array" },
+    { term: "{}", match: "Object" },
+  ];
+
+  const [cards, setCards] = useState<{ id: number; text: string; pairId: number; flipped: boolean; matched: boolean }[]>([]);
+  const [flippedIds, setFlippedIds] = useState<number[]>([]);
+  const [moves, setMoves] = useState(0);
+  const [started, setStarted] = useState(false);
+
+  const startGame = () => {
+    const deck = PAIRS.flatMap((p, i) => [
+      { id: i * 2, text: p.term, pairId: i, flipped: false, matched: false },
+      { id: i * 2 + 1, text: p.match, pairId: i, flipped: false, matched: false },
+    ]).sort(() => Math.random() - 0.5);
+    setCards(deck);
+    setFlippedIds([]);
+    setMoves(0);
+    setStarted(true);
+  };
+
+  const handleFlip = (id: number) => {
+    if (flippedIds.length >= 2) return;
+    const card = cards.find((c) => c.id === id);
+    if (!card || card.flipped || card.matched) return;
+
+    const newFlipped = [...flippedIds, id];
+    setFlippedIds(newFlipped);
+    setCards((prev) => prev.map((c) => (c.id === id ? { ...c, flipped: true } : c)));
+
+    if (newFlipped.length === 2) {
+      setMoves((m) => m + 1);
+      const [a, b] = newFlipped.map((fid) => cards.find((c) => c.id === fid)!);
+      const aCard = a.id === id ? { ...a, flipped: true } : a;
+      const bCard = b.id === id ? { ...b, flipped: true } : b;
+
+      if (aCard.pairId === bCard.pairId) {
+        setTimeout(() => {
+          setCards((prev) => prev.map((c) => (c.pairId === aCard.pairId ? { ...c, matched: true, flipped: true } : c)));
+          setFlippedIds([]);
+        }, 400);
+      } else {
+        setTimeout(() => {
+          setCards((prev) => prev.map((c) => (c.matched ? c : { ...c, flipped: false })));
+          setFlippedIds([]);
+        }, 800);
+      }
+    }
+  };
+
+  const allMatched = started && cards.length > 0 && cards.every((c) => c.matched);
+
+  return (
+    <div className="border border-[var(--border)] rounded-2xl overflow-hidden bg-[var(--card)]">
+      <div className="px-5 py-4 border-b border-[var(--border)] flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Brain size={18} className="text-emerald-500" />
+          <h3 className="font-bold text-sm">Memory Match</h3>
+        </div>
+        {started && (
+          <span className="text-xs text-[var(--muted-foreground)]">
+            {moves} moves
+          </span>
+        )}
+      </div>
+      <div className="p-6">
+        {!started ? (
+          <div className="text-center">
+            <p className="text-sm text-[var(--muted-foreground)] mb-4">
+              Match programming keywords with their meanings. Flip two cards at a time.
+            </p>
+            <button onClick={startGame} className="px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-semibold transition-colors">
+              Start game
+            </button>
+          </div>
+        ) : allMatched ? (
+          <div className="text-center">
+            <Trophy size={32} className="text-emerald-500 mx-auto mb-3" />
+            <p className="text-2xl font-black mb-1">All matched!</p>
+            <p className="text-sm text-[var(--muted-foreground)] mb-4">Completed in {moves} moves</p>
+            <button onClick={startGame} className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-lg text-sm font-semibold transition-colors">
+              <RotateCcw size={14} /> Play again
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+            {cards.map((card) => (
+              <button
+                key={card.id}
+                onClick={() => handleFlip(card.id)}
+                className={`h-20 rounded-xl text-sm font-bold transition-all ${
+                  card.matched
+                    ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
+                    : card.flipped
+                    ? "bg-brand-500/10 border border-brand-500/30 text-brand-600 dark:text-brand-400"
+                    : "bg-[var(--muted)] border border-[var(--border)] text-transparent hover:bg-[var(--border)] cursor-pointer"
+                }`}
+              >
+                {card.flipped || card.matched ? card.text : "?"}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+/* ── Code Puzzle Game ── */
+function CodePuzzleGame() {
+  const PUZZLES = [
+    {
+      title: "Print numbers 1-5",
+      lines: ["for i in range(1, 6):", "    print(i)"],
+      language: "Python",
+    },
+    {
+      title: "Define and call a function",
+      lines: ["def greet(name):", '    return f"Hello, {name}!"', 'print(greet("World"))'],
+      language: "Python",
+    },
+    {
+      title: "Check if even or odd",
+      lines: ["number = 7", "if number % 2 == 0:", '    print("Even")', "else:", '    print("Odd")'],
+      language: "Python",
+    },
+  ];
+
+  const [puzzleIdx, setPuzzleIdx] = useState(0);
+  const [shuffled, setShuffled] = useState<string[]>([]);
+  const [answer, setAnswer] = useState<string[]>([]);
+  const [checked, setChecked] = useState(false);
+  const [correct, setCorrect] = useState(false);
+
+  const puzzle = PUZZLES[puzzleIdx];
+
+  const initPuzzle = (idx: number) => {
+    const p = PUZZLES[idx];
+    setShuffled([...p.lines].sort(() => Math.random() - 0.5));
+    setAnswer([]);
+    setChecked(false);
+    setCorrect(false);
+  };
+
+  useState(() => { initPuzzle(0); });
+
+  const addLine = (line: string) => {
+    if (checked) return;
+    setShuffled((prev) => prev.filter((l) => l !== line));
+    setAnswer((prev) => [...prev, line]);
+  };
+
+  const removeLine = (line: string) => {
+    if (checked) return;
+    setAnswer((prev) => prev.filter((l) => l !== line));
+    setShuffled((prev) => [...prev, line]);
+  };
+
+  const checkAnswer = () => {
+    setChecked(true);
+    setCorrect(JSON.stringify(answer) === JSON.stringify(puzzle.lines));
+  };
+
+  const nextPuzzle = () => {
+    const next = (puzzleIdx + 1) % PUZZLES.length;
+    setPuzzleIdx(next);
+    initPuzzle(next);
+  };
+
+  return (
+    <div className="border border-[var(--border)] rounded-2xl overflow-hidden bg-[var(--card)]">
+      <div className="px-5 py-4 border-b border-[var(--border)] flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Zap size={18} className="text-blue-500" />
+          <h3 className="font-bold text-sm">Code Puzzle</h3>
+        </div>
+        <span className="text-xs text-[var(--muted-foreground)]">
+          {puzzle.language} &middot; {puzzleIdx + 1}/{PUZZLES.length}
+        </span>
+      </div>
+      <div className="p-6">
+        <p className="text-sm font-semibold mb-4">
+          Arrange the lines to: <span className="text-brand-500">{puzzle.title}</span>
+        </p>
+
+        {/* Answer area */}
+        <div className="min-h-[80px] rounded-xl border-2 border-dashed border-[var(--border)] p-3 mb-4 space-y-1.5">
+          {answer.length === 0 && (
+            <p className="text-xs text-[var(--muted-foreground)] text-center py-4">
+              Tap lines below to build your code
+            </p>
+          )}
+          {answer.map((line, i) => (
+            <button
+              key={i}
+              onClick={() => removeLine(line)}
+              className={`block w-full text-left px-3 py-2 rounded-lg font-mono text-xs transition-colors ${
+                checked
+                  ? line === puzzle.lines[i]
+                    ? "bg-emerald-500/10 border border-emerald-500/30 text-emerald-700 dark:text-emerald-400"
+                    : "bg-red-500/10 border border-red-500/30 text-red-700 dark:text-red-400"
+                  : "bg-[var(--muted)] hover:bg-[var(--border)] cursor-pointer"
+              }`}
+            >
+              {line}
+            </button>
+          ))}
+        </div>
+
+        {/* Available lines */}
+        {shuffled.length > 0 && (
+          <div className="space-y-1.5 mb-4">
+            {shuffled.map((line, i) => (
+              <button
+                key={i}
+                onClick={() => addLine(line)}
+                className="block w-full text-left px-3 py-2 rounded-lg font-mono text-xs bg-[var(--muted)] hover:bg-[var(--border)] cursor-pointer transition-colors"
+              >
+                {line}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="flex gap-2">
+          {!checked && answer.length === puzzle.lines.length && (
+            <button onClick={checkAnswer} className="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white rounded-lg text-sm font-semibold transition-colors">
+              Check
+            </button>
+          )}
+          {checked && (
+            <>
+              <p className={`flex items-center gap-1 text-sm font-semibold ${correct ? "text-emerald-500" : "text-red-500"}`}>
+                {correct ? <><CheckCircle2 size={16} /> Correct!</> : <><XCircle size={16} /> Not quite</>}
+              </p>
+              <button onClick={nextPuzzle} className="ml-auto px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white rounded-lg text-xs font-semibold transition-colors">
+                Next puzzle
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+/* ── Math Speed Drill ── */
+function MathDrillGame() {
+  const [gameState, setGameState] = useState<"idle" | "playing" | "done">("idle");
+  const [question, setQuestion] = useState({ a: 0, b: 0, op: "+", answer: 0 });
+  const [input, setInput] = useState("");
+  const [score, setScore] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(30);
+  const [timerRef, setTimerRef] = useState<NodeJS.Timeout | null>(null);
+
+  const generateQuestion = () => {
+    const ops = ["+", "-", "*"];
+    const op = ops[Math.floor(Math.random() * ops.length)];
+    let a: number, b: number, answer: number;
+    if (op === "*") {
+      a = Math.floor(Math.random() * 12) + 1;
+      b = Math.floor(Math.random() * 12) + 1;
+      answer = a * b;
+    } else if (op === "-") {
+      a = Math.floor(Math.random() * 50) + 10;
+      b = Math.floor(Math.random() * a);
+      answer = a - b;
+    } else {
+      a = Math.floor(Math.random() * 50) + 1;
+      b = Math.floor(Math.random() * 50) + 1;
+      answer = a + b;
+    }
+    return { a, b, op, answer };
+  };
+
+  const startGame = () => {
+    setGameState("playing");
+    setScore(0);
+    setInput("");
+    setQuestion(generateQuestion());
+    setTimeLeft(30);
+    const interval = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) { clearInterval(interval); setGameState("done"); return 0; }
+        return t - 1;
+      });
+    }, 1000);
+    setTimerRef(interval);
+  };
+
+  const handleInput = (value: string) => {
+    setInput(value);
+    if (value === String(question.answer)) {
+      setScore((s) => s + 1);
+      setInput("");
+      setQuestion(generateQuestion());
+    }
+  };
+
+  const reset = () => {
+    if (timerRef) clearInterval(timerRef);
+    setGameState("idle");
+  };
+
+  return (
+    <div className="border border-[var(--border)] rounded-2xl overflow-hidden bg-[var(--card)]">
+      <div className="px-5 py-4 border-b border-[var(--border)] flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <Timer size={18} className="text-cyan-500" />
+          <h3 className="font-bold text-sm">Math Speed Drill</h3>
+        </div>
+        <span className="text-xs text-[var(--muted-foreground)]">30 seconds</span>
+      </div>
+      <div className="p-6 text-center">
+        {gameState === "idle" && (
+          <div>
+            <p className="text-sm text-[var(--muted-foreground)] mb-4">
+              Solve as many arithmetic problems as you can in 30 seconds.
+            </p>
+            <button onClick={startGame} className="px-5 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-semibold transition-colors">
+              Start drill
+            </button>
+          </div>
+        )}
+        {gameState === "playing" && (
+          <div>
+            <div className="flex items-center justify-center gap-6 mb-6">
+              <div><p className="text-3xl font-black tabular-nums">{timeLeft}s</p><p className="text-[10px] text-[var(--muted-foreground)] uppercase tracking-wider">Time</p></div>
+              <div><p className="text-3xl font-black tabular-nums text-cyan-500">{score}</p><p className="text-[10px] text-[var(--muted-foreground)] uppercase tracking-wider">Score</p></div>
+            </div>
+            <p className="text-3xl font-mono font-bold mb-4">{question.a} {question.op} {question.b} = ?</p>
+            <input
+              type="number"
+              value={input}
+              onChange={(e) => handleInput(e.target.value)}
+              className="w-32 mx-auto block px-4 py-3 rounded-xl border border-[var(--border)] bg-[var(--muted)] text-center font-mono text-lg focus:outline-none focus:ring-2 focus:ring-cyan-500"
+              autoFocus
+            />
+          </div>
+        )}
+        {gameState === "done" && (
+          <div>
+            <Trophy size={32} className="text-cyan-500 mx-auto mb-3" />
+            <p className="text-3xl font-black mb-1">{score}</p>
+            <p className="text-sm text-[var(--muted-foreground)] mb-4">problems solved in 30 seconds</p>
+            <button onClick={reset} className="inline-flex items-center gap-2 px-5 py-2.5 bg-cyan-500 hover:bg-cyan-600 text-white rounded-lg text-sm font-semibold transition-colors">
+              <RotateCcw size={14} /> Play again
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 /* ── Page ── */
 export default function GamesPage() {
   return (
@@ -238,13 +599,16 @@ export default function GamesPage() {
           Study Games
         </h1>
         <p className="mt-3 text-lg text-[var(--muted-foreground)]">
-          Learn through play. Speed drills, flashcards, and brain teasers that
-          make studying addictive.
+          Learn through play. Speed drills, flashcards, memory games, and
+          code puzzles that make studying addictive.
         </p>
       </div>
 
       <div className="space-y-8">
         <TypingGame />
+        <MemoryMatchGame />
+        <CodePuzzleGame />
+        <MathDrillGame />
         <FlashcardGame />
       </div>
 

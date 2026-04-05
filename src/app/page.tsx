@@ -83,6 +83,12 @@ function BlogAndQuizzesSection() {
             <div className="space-y-3">
               {[
                 {
+                  href: "/games",
+                  title: "Study Games",
+                  desc: "Speed typing, flashcards, memory match, and code puzzles",
+                  badge: "Play now",
+                },
+                {
                   href: "/quizzes",
                   title: "Quizzes",
                   desc: "Test your Python, JavaScript, and AI knowledge with instant feedback",
