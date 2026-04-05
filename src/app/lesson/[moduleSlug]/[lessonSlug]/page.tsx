@@ -9,6 +9,7 @@ import { CodePlayground } from "@/components/lesson/CodePlayground";
 import { AudioPlayer } from "@/components/lesson/AudioPlayer";
 import { Metadata } from "next";
 import { UpgradePrompt } from "@/components/upgrade/UpgradePrompt";
+import { MarkCompleteButton } from "@/components/lesson/MarkCompleteButton";
 
 interface PageParams {
   moduleSlug: string;
@@ -101,6 +102,11 @@ export default async function LessonPage({
           codeExamples={lesson.codeExamples}
         />
       </section>
+
+      {/* Mark complete */}
+      <div className="mb-6">
+        <MarkCompleteButton moduleSlug={moduleSlug} lessonSlug={lessonSlug} />
+      </div>
 
       {/* Upgrade nudge */}
       <div className="mb-10">

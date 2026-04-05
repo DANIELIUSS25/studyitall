@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { UserMenu } from "./UserMenu";
+import { StreakBadge } from "./StreakBadge";
 import { useState } from "react";
 
 const NAV_LINKS = [
@@ -41,13 +43,9 @@ export function Header() {
           </nav>
 
           <div className="hidden md:flex items-center gap-3">
+            <StreakBadge />
             <ThemeToggle />
-            <Link
-              href="/lesson/module-01-fundamentals/lesson-01-what-is-programming"
-              className="px-4 py-1.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-full transition-colors"
-            >
-              Start free
-            </Link>
+            <UserMenu />
           </div>
 
           {/* Mobile */}

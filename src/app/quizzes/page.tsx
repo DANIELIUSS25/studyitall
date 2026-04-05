@@ -194,11 +194,11 @@ export default function QuizzesPage() {
       </div>
 
       <div className="space-y-10">
-        <QuizCard title="Python Fundamentals" questions={PYTHON_QUIZ} />
-        <QuizCard title="AI & Machine Learning Basics" questions={AI_QUIZ} />
-        <QuizCard title="JavaScript Essentials" questions={JS_QUIZ} />
-        <QuizCard title="Chess: Openings & Tactics" questions={CHESS_QUIZ} />
-        <QuizCard title="Data Structures" questions={DS_QUIZ} />
+        <QuizCard title="Python Fundamentals" questions={PYTHON_QUIZ} quizId="python-fundamentals" />
+        <QuizCard title="AI & Machine Learning Basics" questions={AI_QUIZ} quizId="ai-ml-basics" />
+        <QuizCard title="JavaScript Essentials" questions={JS_QUIZ} quizId="javascript-essentials" />
+        <QuizCard title="Chess: Openings & Tactics" questions={CHESS_QUIZ} quizId="chess-openings" />
+        <QuizCard title="Data Structures" questions={DS_QUIZ} quizId="data-structures" />
       </div>
 
       <div className="mt-10">
