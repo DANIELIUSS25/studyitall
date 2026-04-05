@@ -10,6 +10,7 @@ import {
   BookText,
   Languages,
   Brain,
+  Crown,
 } from "lucide-react";
 import { SUBJECTS, getSubject } from "@/lib/subjects";
 import { Metadata } from "next";
@@ -22,6 +23,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Landmark: <Landmark size={40} />,
   BookText: <BookText size={40} />,
   Languages: <Languages size={40} />,
+  Crown: <Crown size={40} />,
 };
 
 interface PageParams {
@@ -138,6 +140,18 @@ export default async function SubjectPage({
       "Everyday Phrases & Questions",
       "Reading Thai Script",
       "Thai Culture & Etiquette",
+    ],
+    chess: [
+      "The Rules of Chess",
+      "Piece Values & Basic Checkmates",
+      "Opening Principles",
+      "Common Openings (Italian, Sicilian, Queen's Gambit)",
+      "Tactical Patterns (Forks, Pins, Skewers)",
+      "Positional Play & Pawn Structure",
+      "Middlegame Strategy",
+      "Endgame Fundamentals",
+      "Calculation & Visualization",
+      "Famous Games & Analysis",
     ],
   };
 

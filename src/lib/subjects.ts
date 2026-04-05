@@ -127,6 +127,20 @@ export const SUBJECTS: Subject[] = [
     lessonCount: 0,
     comingSoon: true,
   },
+  {
+    slug: "chess",
+    name: "Chess",
+    tagline: "Openings, tactics, strategy",
+    description:
+      "Learn chess from the rules to advanced strategy. Openings, middlegame tactics, endgame technique, and positional play.",
+    icon: "Crown",
+    iconBg: "bg-stone-100 dark:bg-stone-500/20",
+    iconColor: "text-stone-600 dark:text-stone-400",
+    stripe: "bg-stone-500",
+    topicCount: 10,
+    lessonCount: 0,
+    comingSoon: true,
+  },
 ];
 
 export function getSubject(slug: string): Subject | undefined {

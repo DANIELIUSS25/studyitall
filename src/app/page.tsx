@@ -7,6 +7,7 @@ import {
   BookText,
   Languages,
   Brain,
+  Crown,
   ArrowRight,
   Headphones,
   Terminal,
@@ -27,6 +28,7 @@ const ICON_MAP: Record<string, React.ReactNode> = {
   Landmark: <Landmark size={24} />,
   BookText: <BookText size={24} />,
   Languages: <Languages size={24} />,
+  Crown: <Crown size={24} />,
 };
 
 function BlogAndQuizzesSection() {

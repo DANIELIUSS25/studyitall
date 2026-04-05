@@ -106,6 +106,80 @@ const JS_QUIZ: QuizQuestion[] = [
   },
 ];
 
+const CHESS_QUIZ: QuizQuestion[] = [
+  {
+    question: "In chess, which piece can only move diagonally?",
+    options: ["Rook", "Bishop", "Knight", "Queen"],
+    correctIndex: 1,
+    explanation: "The bishop moves any number of squares diagonally. The rook moves in straight lines, the queen moves both ways, and the knight moves in an L-shape.",
+  },
+  {
+    question: "What is 'castling' in chess?",
+    options: [
+      "Capturing a piece on the back rank",
+      "Promoting a pawn to a queen",
+      "Moving the king and a rook simultaneously",
+      "Placing a piece on a square it controls",
+    ],
+    correctIndex: 2,
+    explanation: "Castling is a special move where the king moves two squares toward a rook, and the rook jumps to the other side of the king. It's the only move where two pieces move at once.",
+  },
+  {
+    question: "What does 'checkmate' mean?",
+    options: [
+      "The king is in check and can escape",
+      "The king is in check and cannot escape",
+      "A player has no legal moves",
+      "Both kings are in check",
+    ],
+    correctIndex: 1,
+    explanation: "Checkmate occurs when the king is under attack (in check) and there is no legal move to escape. The game is over and the checkmating player wins.",
+  },
+  {
+    question: "Which opening starts with 1.e4 e5 2.Nf3 Nc6 3.Bc4?",
+    options: ["Sicilian Defense", "French Defense", "Italian Game", "Ruy Lopez"],
+    correctIndex: 2,
+    explanation: "The Italian Game (Giuoco Piano) is one of the oldest and most natural openings. It develops the bishop to an active square targeting f7, the weakest point in Black's position.",
+  },
+];
+
+const DS_QUIZ: QuizQuestion[] = [
+  {
+    question: "What is the time complexity of accessing an element by index in an array?",
+    options: ["O(n)", "O(log n)", "O(1)", "O(n log n)"],
+    correctIndex: 2,
+    explanation: "Arrays provide O(1) constant-time access by index because the memory address can be calculated directly: base_address + (index * element_size).",
+  },
+  {
+    question: "Which data structure follows Last-In-First-Out (LIFO)?",
+    options: ["Queue", "Array", "Stack", "Linked List"],
+    correctIndex: 2,
+    explanation: "A stack follows LIFO: the last element added is the first one removed, like a stack of plates. A queue follows FIFO (First-In-First-Out).",
+  },
+  {
+    question: "What is the main advantage of a linked list over an array?",
+    options: [
+      "Faster random access",
+      "O(1) insertion at the beginning",
+      "Less memory usage",
+      "Faster sorting",
+    ],
+    correctIndex: 1,
+    explanation: "Inserting at the beginning of a linked list is O(1) — just create a new node and point it to the current head. In an array, inserting at the beginning requires shifting all elements, which is O(n).",
+  },
+  {
+    question: "A hash table provides average O(1) time for which operations?",
+    options: [
+      "Only insertion",
+      "Only lookup",
+      "Insertion, deletion, and lookup",
+      "Only insertion and lookup",
+    ],
+    correctIndex: 2,
+    explanation: "Hash tables provide average O(1) time for insertion, deletion, and lookup by using a hash function to compute the index where data is stored.",
+  },
+];
+
 export default function QuizzesPage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -123,6 +197,8 @@ export default function QuizzesPage() {
         <QuizCard title="Python Fundamentals" questions={PYTHON_QUIZ} />
         <QuizCard title="AI & Machine Learning Basics" questions={AI_QUIZ} />
         <QuizCard title="JavaScript Essentials" questions={JS_QUIZ} />
+        <QuizCard title="Chess: Openings & Tactics" questions={CHESS_QUIZ} />
+        <QuizCard title="Data Structures" questions={DS_QUIZ} />
       </div>
 
       <div className="mt-10">
